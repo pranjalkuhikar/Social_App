@@ -9,6 +9,9 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 app.set("view engine", "ejs");
 app.set("views", "./src/views");
 
+app.get("/", (req, res) => {
+  res.redirect("/create");
+});
 app.use("/create", indexRoutes);
 
 app.use((err, req, res, next) => {
