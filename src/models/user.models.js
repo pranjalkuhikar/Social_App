@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  image: {
+  username: {
     type: String,
     required: true,
+    unique: true,
   },
-  name: {
+  profileImage: {
     type: String,
     required: true,
   },
@@ -16,14 +17,16 @@ const userSchema = new mongoose.Schema({
   },
   bio: {
     type: String,
-    required: true,
   },
-  password: {
+  gender: {
     type: String,
-    required: true,
+    enum: ["male", "female", "other"],
+    default: "other",
+  },
+  age: {
+    type: Number,
   },
 });
 
 const User = mongoose.model("User", userSchema);
-
 module.exports = User;
