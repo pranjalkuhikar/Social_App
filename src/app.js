@@ -7,15 +7,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.set("view engine", "ejs");
-app.set("views", "./src/views");
+app.set("views", path.join(__dirname, "views"));
 
 app.get("/", (req, res) => {
-  res.redirect("/create");
+  res.redirect("/register");
 });
-app.use("/create", indexRoutes);
+app.use("/", indexRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
+
 module.exports = app;
